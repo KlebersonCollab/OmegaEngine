@@ -23,11 +23,11 @@ class Scene_Base
   # * Atualização da tela
   #--------------------------------------------------------------------------
   def update
-      BeginDrawing()
-      ClearBackground(BLACK)
-      update_basic
-      EndDrawing()
-      SceneManager.exit if IsKeyPressed(KEY_ESCAPE)
+    BeginDrawing()
+    ClearBackground(BLACK)
+    update_basic
+    EndDrawing()
+    SceneManager.exit if IsKeyPressed(KEY_ESCAPE)
   end
   #--------------------------------------------------------------------------
   # * Atualização da tela (básico)

@@ -14,7 +14,7 @@ class Scene_Title < Scene_Base
 	# * Load Background Texture
 	#--------------------------------------------------------------------------
 	def create_background
-		@title_screen = Cache.title("1024083")
+		@title_screen = OE.title("1024083")
 		@layout = [
 			Rectangle.create(0,0,@title_screen[:width],@title_screen[:height]),
 			Rectangle.create(0,0,GetScreenWidth(),GetScreenHeight())
@@ -24,7 +24,7 @@ class Scene_Title < Scene_Base
 	# * Load Scene Music
 	#--------------------------------------------------------------------------
 	def init_music
-		@music = Cache.music("Fantasy Medieval Music - Song of the North")
+		@music = OE.music("Fantasy Medieval Music - Song of the North")
 		PlayMusicStream(@music)
 	end
 	#--------------------------------------------------------------------------

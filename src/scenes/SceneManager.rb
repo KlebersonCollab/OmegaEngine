@@ -4,10 +4,10 @@ module SceneManager
 	#--------------------------------------------------------------------------
 	# * Start
 	#--------------------------------------------------------------------------
-	def self.run(*args)
-		InitWindow(args[0],args[1],args[2])
+	def self.run(width,height,title,fps)
+		InitWindow(width,height,title)
 		InitAudioDevice()
-		SetTargetFPS(args[3])
+		SetTargetFPS(fps)
 		#ToggleFullscreen()
 		#SetWindowMonitor(1)
 		@scene = first_scene_class.new

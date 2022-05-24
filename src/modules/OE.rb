@@ -1,4 +1,4 @@
-module Cache
+module OE
   #--------------------------------------------------------------------------
   # * Load Texture in resources/titles
   #     filename : nome do arquivo
@@ -25,7 +25,7 @@ module Cache
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.music(filename)
-    LoadMusicStream("resources/audio/musics/#{filename}.ogg")
+    LoadMusicStream("resources/audio/music/#{filename}.ogg")
   end
   #--------------------------------------------------------------------------
   # * Load Sound in resources/audio/sounds

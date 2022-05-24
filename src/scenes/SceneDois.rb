@@ -15,7 +15,7 @@ class Scene_Dois < Scene_Base
 	#--------------------------------------------------------------------------
 	def create_background
 		@texture = []
-		@title_screen = Cache.title("1024083")
+		@title_screen = OE.title("1024083")
 		@texture << @title_screen
 		@layout = [
 			Rectangle.create(0,0,@title_screen[:width],@title_screen[:height]),
@@ -26,7 +26,7 @@ class Scene_Dois < Scene_Base
 	# * Load Scene Music
 	#--------------------------------------------------------------------------
 	def init_music
-		@music = Cache.music("Fantasy Medieval Music - Song of the North")
+		@music = OE.music("Fantasy Medieval Music - Song of the North")
 		PlayMusicStream(@music)
 	end
 	#--------------------------------------------------------------------------
