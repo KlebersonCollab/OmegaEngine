@@ -32,6 +32,6 @@ module OE
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.sound(filename)
-    LoadSound("resources/audio/sounds/#{filename}.ogg")
+    LoadSound("resources/audio/sounds/#{filename}.wav")
   end
 end
