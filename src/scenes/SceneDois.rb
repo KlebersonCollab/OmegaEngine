@@ -5,11 +5,12 @@ class Scene_Dois < Scene_Base
   def start
     super
     SceneManager.clear
-    @centerX = GetScreenWidth()/2
-    @centerY = GetScreenHeight()/2
+    @centerX = GetScreenWidth() / 2
+    @centerY = GetScreenHeight() / 2
     init_music
     create_background
   end
+
   #--------------------------------------------------------------------------
   # * Load Background Texture
   #--------------------------------------------------------------------------
@@ -18,10 +19,13 @@ class Scene_Dois < Scene_Base
     @title_screen = OE.title("1024083")
     @texture << @title_screen
     @layout = [
-      Rectangle.create(0,0,@title_screen[:width],@title_screen[:height]),
-      Rectangle.create(0,0,GetScreenWidth(),GetScreenHeight())
+      Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
+      Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
+    @btn = Button.new(@centerX - 140, GetScreenHeight() - 230, 141, 123 / 3, "   Login  ", OE.gui("Button"), 3)
+    @btn.on(:clickbutton) { SceneManager.goto(Scene_Title) }
   end
+
   #--------------------------------------------------------------------------
   # * Load Scene Music
   #--------------------------------------------------------------------------
@@ -29,6 +33,7 @@ class Scene_Dois < Scene_Base
     @music = OE.music("Fantasy Medieval Music - Song of the North")
     PlayMusicStream(@music)
   end
+
   #--------------------------------------------------------------------------
   # * Update Basic
   #--------------------------------------------------------------------------
@@ -37,27 +42,28 @@ class Scene_Dois < Scene_Base
     draw_background
     draw_game_title
     UpdateMusicStream(@music)
-    if IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)
-      SceneManager.goto(Scene_Title)
-    end
+    @btn.update
   end
+
   #--------------------------------------------------------------------------
   # * Draw Background
   #--------------------------------------------------------------------------
   def draw_background
-    DrawTexturePro(@title_screen, @layout[0], @layout[1],Vector2.create(0,0), 0.0,WHITE)
+    DrawTexturePro(@title_screen, @layout[0], @layout[1], Vector2.create(0, 0), 0.0, WHITE)
   end
+
   #--------------------------------------------------------------------------
   # * Draw Game Title
   #--------------------------------------------------------------------------
   def draw_game_title
-    DrawText("LALALALA", @centerX-60, 0, 20, LIGHTGRAY)
   end
+
   #--------------------------------------------------------------------------
   # * Dispose All Resources and Sounds
   #--------------------------------------------------------------------------
   def dispose
     super
     UnloadMusicStream(@music)
+    @btn.dispose
   end
 end

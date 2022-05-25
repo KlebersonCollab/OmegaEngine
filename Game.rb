@@ -8,6 +8,7 @@ require_relative "src/scenes/SceneTitle"
 require_relative "src/scenes/SceneDois"
 
 require_relative "src/gui/Emitter"
+require_relative "src/gui/Gui"
 require_relative "src/gui/Button"
 
 # Width, Height, Title, FPS

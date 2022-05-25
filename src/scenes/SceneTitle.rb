@@ -7,7 +7,7 @@ class Scene_Title < Scene_Base
     SceneManager.clear
     @centerX = GetScreenWidth() / 2
     @centerY = GetScreenHeight() / 2
-    init_music
+    load_music
     create_background
   end
 
@@ -20,14 +20,14 @@ class Scene_Title < Scene_Base
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
-    @btn = Button.new(0, 0, 20, 20, "", OE.gui("Button"), 3)
+    @btn = Button.new(@centerX - 140, GetScreenHeight() - 230, 141, 123 / 3, " Loginho ", OE.gui("Button"), 3, 20)
     @btn.on(:clickbutton) { SceneManager.goto(Scene_Dois) }
   end
 
   #--------------------------------------------------------------------------
   # * Load Scene Music
   #--------------------------------------------------------------------------
-  def init_music
+  def load_music
     @music = OE.music("Fantasy Medieval Music - Song of the North")
     PlayMusicStream(@music)
   end
@@ -54,7 +54,7 @@ class Scene_Title < Scene_Base
   # * Draw Game Title
   #--------------------------------------------------------------------------
   def draw_game_title
-    DrawText("Omega Engine", @centerX - 60, 0, 20, LIGHTGRAY)
+    DrawText(TextSubtext("Omega Engine", 0, @framesCounter / 15), @centerX - 260, 60, 80, RAYWHITE)
   end
 
   #--------------------------------------------------------------------------
