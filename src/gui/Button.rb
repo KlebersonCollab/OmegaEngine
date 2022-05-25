@@ -22,9 +22,9 @@ class Button < Gui
   #--------------------------------------------------------------------------
   def create_interface
     @button = @texture
-    @frameHeight = (@button[:height] / @number_frames)
-    @sourceRec = Rectangle.create(0, 0, @button[:width], @frameHeight)
-    @btnBounds = Rectangle.create(@x, @y, @button[:width], @frameHeight)
+    @frame_height = (@button[:height] / @number_frames)
+    @source_rec = Rectangle.create(0, 0, @button[:width], @frame_height)
+    @btn_bounds = Rectangle.create(@x, @y, @button[:width], @frame_height)
   end
 
   #--------------------------------------------------------------------------
@@ -32,8 +32,8 @@ class Button < Gui
   #--------------------------------------------------------------------------
   def draw
     super()
-    DrawTextureRec(@button, @sourceRec, Vector2.create(@btnBounds[:x], @btnBounds[:y]), WHITE)
-    DrawText(@text.center((@btnBounds[:width] / @text.size)), @btnBounds[:x], @btnBounds[:y] + @space_between, @font_size, @font_color)
+    DrawTextureRec(@button, @source_rec, Vector2.create(@btn_bounds[:x], @btn_bounds[:y]), WHITE)
+    DrawText(@text.center((@btn_bounds[:width] / @text.size)), @btn_bounds[:x], @btn_bounds[:y] + @space_between, @font_size, @font_color)
   end
 
   #--------------------------------------------------------------------------
@@ -43,14 +43,14 @@ class Button < Gui
     super
     update_state
     draw
-    @sourceRec[:y] = @btnState * @frameHeight
+    @source_rec[:y] = @btn_state * @frame_height
   end
 
   #--------------------------------------------------------------------------
   # * Update state of a Button
   #--------------------------------------------------------------------------
   def update_state
-    in_area(@btnBounds)
+    in_area(@btn_bounds)
   end
 
   #--------------------------------------------------------------------------
@@ -58,6 +58,6 @@ class Button < Gui
   #--------------------------------------------------------------------------
   def dispose
     super()
-    UnloadSound(@fxButton)
+    UnloadSound(@fx_button)
   end
 end

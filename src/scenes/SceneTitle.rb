@@ -5,8 +5,6 @@ class Scene_Title < Scene_Base
   def start
     super
     SceneManager.clear
-    @centerX = GetScreenWidth() / 2
-    @centerY = GetScreenHeight() / 2
     load_music
     create_background
   end
@@ -20,8 +18,9 @@ class Scene_Title < Scene_Base
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
-    @btn = Button.new(@centerX - 140, GetScreenHeight() - 230, 141, 123 / 3, " Loginho ", OE.gui("Button"), 3, 20)
-    @btn.on(:clickbutton) { SceneManager.goto(Scene_Dois) }
+    @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 123 / 3, " Loginho ", OE.gui("Button"), 3, 20)
+    @btn.on(:click_button) { SceneManager.goto(Scene_Dois) }
+    @btn.on(:mouse_on) { self }
   end
 
   #--------------------------------------------------------------------------
@@ -54,7 +53,7 @@ class Scene_Title < Scene_Base
   # * Draw Game Title
   #--------------------------------------------------------------------------
   def draw_game_title
-    DrawText(TextSubtext("Omega Engine", 0, @framesCounter / 15), @centerX - 260, 60, 80, RAYWHITE)
+    DrawText(TextSubtext("Omega Engine", 0, @frames_counter / 15), @center_x - 260, 60, 80, RAYWHITE)
   end
 
   #--------------------------------------------------------------------------

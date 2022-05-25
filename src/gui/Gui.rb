@@ -8,11 +8,9 @@ class Gui < Emitter
   def initialize()
     super()
     @mouse_pos = Vector2.create(0, 0)
-    @fxButton = OE.sound("decision")
-    @btnState = 0
-    @btnAction = false
-    @centerX = GetScreenWidth() / 2
-    @centerY = GetScreenHeight() / 2
+    @fx_button = OE.sound("decision")
+    @btn_state = 0
+    @btn_action = false
     @font = GetFontDefault()
   end
 
@@ -27,14 +25,14 @@ class Gui < Emitter
   #------------------------------------------------------------------------------
   def update
     @mouse_pos = GetMousePosition()
-    @btnAction = false
+    @btn_action = false
   end
 
   #------------------------------------------------------------------------------
   # * Play Click Sound
   #------------------------------------------------------------------------------
   def play_click_sound
-    PlaySound(@fxButton)
+    PlaySound(@fx_button)
   end
 
   #------------------------------------------------------------------------------
@@ -45,7 +43,7 @@ class Gui < Emitter
       mouse_click
       mouse_on
     else
-      @btnState = 0
+      @btn_state = 0
     end
     action
   end
@@ -55,28 +53,33 @@ class Gui < Emitter
   #------------------------------------------------------------------------------
   def mouse_click
     if IsMouseButtonDown(MOUSE_BUTTON_LEFT)
-      @btnState = 2
+      @btn_state = 2
     else
-      @btnState = 1
+      @btn_state = 1
     end
   end
 
   #------------------------------------------------------------------------------
-  # * Check Mouse released
+  # * Check Mouse Click
   #------------------------------------------------------------------------------
   def mouse_on
-    if IsMouseButtonReleased(MOUSE_BUTTON_LEFT)
-      @btnAction = true
+    if IsMouseButtonPressed(MOUSE_BUTTON_LEFT) #IsMouseButtonReleased(MOUSE_BUTTON_LEFT)
+      @btn_action = true
     end
   end
 
   #------------------------------------------------------------------------------
-  # * Action if status action = true
+  # * Actions
   #------------------------------------------------------------------------------
   def action
-    if @btnAction
+    # Mouse Click in event
+    if @btn_action
       play_click_sound
-      emit(:clickbutton)
+      emit(:click_button)
+    end
+    # Mouse on event
+    if @btn_state == 1
+      emit(:mouse_on)
     end
   end
 

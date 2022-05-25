@@ -12,7 +12,9 @@ class Scene_Base
   # * Inicialização do processo
   #--------------------------------------------------------------------------
   def start
-    @framesCounter = 0
+    @frames_counter = 0
+    @center_x = GetScreenWidth() / 2
+    @center_y = GetScreenHeight() / 2
   end
 
   #--------------------------------------------------------------------------
@@ -37,7 +39,7 @@ class Scene_Base
   # * Atualização da tela (básico)
   #--------------------------------------------------------------------------
   def update_basic
-    @framesCounter += 1
+    @frames_counter += 1
   end
 
   def terminate
