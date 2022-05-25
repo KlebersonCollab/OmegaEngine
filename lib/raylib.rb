@@ -24,8 +24,8 @@ module Raylib
         ffi_lib *lib_paths
         setup_symbols()
 
-        setup_raygui_symbols() if raygui_libpath != nil
-        setup_physac_symbols() if physac_libpath != nil
+        #setup_raygui_symbols() if raygui_libpath != nil
+        #setup_physac_symbols() if physac_libpath != nil
       rescue => error
         puts error
       end
