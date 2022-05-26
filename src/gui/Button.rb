@@ -1,19 +1,19 @@
 class Button < Gui
+  attr_accessor :x, :y, :width, :height, :btn_bounds
   #--------------------------------------------------------------------------
   # * Initialize
   #--------------------------------------------------------------------------
-  def initialize(x, y, width, height, text, texture, number_frames = 3, font_size = 20, font_color = WHITE, space_between = 8)
+  def initialize(x, y, width, height, text, texture, font_size = 20, font_color = WHITE, space_between = 8)
     super()
     @x = x
     @y = y
     @width = width
     @height = height
     @text = text
-    @texture = texture
-    @number_frames = number_frames
-    @space_between = space_between
+    @button = texture
     @font_size = font_size
     @font_color = font_color
+    @space_between = space_between
     create_interface
   end
 
@@ -21,10 +21,7 @@ class Button < Gui
   # * Create a interface
   #--------------------------------------------------------------------------
   def create_interface
-    @button = @texture
-    @frame_height = (@button[:height] / @number_frames)
-    @source_rec = Rectangle.create(0, 0, @button[:width], @frame_height)
-    @btn_bounds = Rectangle.create(@x, @y, @button[:width], @frame_height)
+    @btn_bounds = Rectangle.create(@x, @y, @width, @height)
   end
 
   #--------------------------------------------------------------------------
@@ -32,7 +29,16 @@ class Button < Gui
   #--------------------------------------------------------------------------
   def draw
     super()
-    DrawTextureRec(@button, @source_rec, Vector2.create(@btn_bounds[:x], @btn_bounds[:y]), WHITE)
+    case @btn_state
+    when 0 # Mouse
+      DrawRectangle(@x, @y, @width, @height, RED)
+    when 1
+      DrawRectangle(@x, @y, @width, @height, MAROON)
+    when 2
+      DrawRectangle(@x, @y, @width, @height, ORANGE)
+    end
+    DrawRectangleLines(@x, @y, @width, @height, @font_color)
+    DrawRectangleLines(@x, @y, @width + 1, @height + 1, WHITE)
     DrawText(@text.center((@btn_bounds[:width] / @text.size)), @btn_bounds[:x], @btn_bounds[:y] + @space_between, @font_size, @font_color)
   end
 
@@ -43,7 +49,6 @@ class Button < Gui
     super
     update_state
     draw
-    @source_rec[:y] = @btn_state * @frame_height
   end
 
   #--------------------------------------------------------------------------

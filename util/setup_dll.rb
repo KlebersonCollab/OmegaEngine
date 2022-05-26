@@ -1,5 +1,5 @@
 require_relative '../lib/raylib'
-
+ 
 case RUBY_PLATFORM
 when /mswin|msys|mingw|cygwin/
   Raylib.load_lib(Dir.pwd + '/lib/' + 'libraylib.dll')

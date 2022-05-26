@@ -12,6 +12,8 @@ class Gui < Emitter
     @btn_state = 0
     @btn_action = false
     @font = GetFontDefault()
+    @check = 0
+    @click = 0
   end
 
   #------------------------------------------------------------------------------
@@ -32,20 +34,21 @@ class Gui < Emitter
   # * Play Click Sound
   #------------------------------------------------------------------------------
   def play_click_sound
-    PlaySound(@fx_button)
+    #PlaySound(@fx_button)
   end
 
   #------------------------------------------------------------------------------
   # * Check Mouse Position in area GUI
   #------------------------------------------------------------------------------
   def in_area(btn_bounds)
+    @btn_bounds = btn_bounds
     if (CheckCollisionPointRec(@mouse_pos, btn_bounds))
       mouse_click
-      mouse_on
+      mouse_on_click
+      action
     else
       @btn_state = 0
     end
-    action
   end
 
   #------------------------------------------------------------------------------
@@ -62,9 +65,24 @@ class Gui < Emitter
   #------------------------------------------------------------------------------
   # * Check Mouse Click
   #------------------------------------------------------------------------------
-  def mouse_on
-    if IsMouseButtonPressed(MOUSE_BUTTON_LEFT) #IsMouseButtonReleased(MOUSE_BUTTON_LEFT)
+  def mouse_on_click
+    if IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(@mouse_pos, @btn_bounds)
       @btn_action = true
+      @check = 1
+      clicked?
+    end
+  end
+
+  #------------------------------------------------------------------------------
+  # * Check if CheckBock is Clicked
+  #------------------------------------------------------------------------------
+  def clicked?
+    @click += 1
+    emit(:checked)
+    if @click > 1
+      @click = 0
+      @check = 0
+      emit(:unchecked)
     end
   end
 
@@ -79,7 +97,7 @@ class Gui < Emitter
     end
     # Mouse on event
     if @btn_state == 1
-      emit(:mouse_on)
+      emit(:mouse_on_event)
     end
   end
 
