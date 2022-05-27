@@ -34,7 +34,7 @@ class Gui < Emitter
   # * Play Click Sound
   #------------------------------------------------------------------------------
   def play_click_sound
-    #PlaySound(@fx_button)
+    PlaySound(@fx_button)
   end
 
   #------------------------------------------------------------------------------

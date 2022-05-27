@@ -31,6 +31,7 @@ class Scene_Base
     BeginDrawing()
     ClearBackground(BLACK)
     update_basic
+    DrawFPS(0, 0)
     EndDrawing()
     SceneManager.exit if IsKeyPressed(KEY_ESCAPE)
   end

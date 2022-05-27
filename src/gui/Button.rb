@@ -1,26 +1,27 @@
 class Button < Gui
-  attr_accessor :x, :y, :width, :height, :btn_bounds
   #--------------------------------------------------------------------------
   # * Initialize
   #--------------------------------------------------------------------------
-  def initialize(x, y, width, height, text, texture, font_size = 20, font_color = WHITE, space_between = 8)
+  def initialize(x, y, width, height, text = "",
+                 font_size: 20, font_color: WHITE, space_between: 8, border_color: WHITE, border_size: 2, normal: RED, hover: MAROON, click: ORANGE, radius: 20.0)
     super()
     @x = x
     @y = y
     @width = width
     @height = height
     @text = text
-    @button = texture
     @font_size = font_size
     @font_color = font_color
+    @size_text = MeasureText(@text, @font_size)
+    @border_color = border_color
+    @border_size = border_size
+    @radius = radius
     @space_between = space_between
-    create_interface
-  end
-
-  #--------------------------------------------------------------------------
-  # * Create a interface
-  #--------------------------------------------------------------------------
-  def create_interface
+    @state_button = {
+      Normal: normal,
+      Hover: hover,
+      Click: click,
+    }
     @btn_bounds = Rectangle.create(@x, @y, @width, @height)
   end
 
@@ -30,16 +31,15 @@ class Button < Gui
   def draw
     super()
     case @btn_state
-    when 0 # Mouse
-      DrawRectangle(@x, @y, @width, @height, RED)
+    when 0
+      DrawRectangleRounded(@btn_bounds, @radius, @border_size * 2, @state_button[:Normal])
     when 1
-      DrawRectangle(@x, @y, @width, @height, MAROON)
+      DrawRectangleRounded(@btn_bounds, @radius, @border_size * 2, @state_button[:Hover])
     when 2
-      DrawRectangle(@x, @y, @width, @height, ORANGE)
+      DrawRectangleRounded(@btn_bounds, @radius, @border_size * 2, @state_button[:Click])
     end
-    DrawRectangleLines(@x, @y, @width, @height, @font_color)
-    DrawRectangleLines(@x, @y, @width + 1, @height + 1, WHITE)
-    DrawText(@text.center((@btn_bounds[:width] / @text.size)), @btn_bounds[:x], @btn_bounds[:y] + @space_between, @font_size, @font_color)
+    DrawRectangleRoundedLines(@btn_bounds, @radius, @border_size + 4, @border_size, @border_color)
+    DrawText(@text, @x + (@width / 2) - (@size_text / 2), @btn_bounds[:y] + @space_between - @border_size, @font_size, @font_color)
   end
 
   #--------------------------------------------------------------------------
@@ -47,15 +47,8 @@ class Button < Gui
   #--------------------------------------------------------------------------
   def update
     super
-    update_state
-    draw
-  end
-
-  #--------------------------------------------------------------------------
-  # * Update state of a Button
-  #--------------------------------------------------------------------------
-  def update_state
     in_area(@btn_bounds)
+    draw
   end
 
   #--------------------------------------------------------------------------

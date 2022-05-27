@@ -18,10 +18,10 @@ class Scene_Title < Scene_Base
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
-    @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 123 / 3, " Loginho ", 20)
+    @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 32, "Loginho")
     @btn.on(:click_button) { SceneManager.goto(Scene_Dois) }
     @btn.on(:mouse_on_event) { self }
-    @check = CheckBox.new(@center_x - 140, GetScreenHeight() - 160, 141, 123 / 3, " Lembrar? ", 18)
+    @check = CheckBox.new(@center_x - 140, GetScreenHeight() - 160, "Lembrar?", check_size: 20, icon_color: DARKGRAY)
   end
 
   #--------------------------------------------------------------------------

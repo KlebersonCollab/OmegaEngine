@@ -5,8 +5,6 @@ class Scene_Dois < Scene_Base
   def start
     super
     SceneManager.clear
-    @centerX = GetScreenWidth() / 2
-    @centerY = GetScreenHeight() / 2
     init_music
     create_background
   end
@@ -22,7 +20,7 @@ class Scene_Dois < Scene_Base
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
-    @btn = Button.new(@centerX - 140, GetScreenHeight() - 230, 141, 123 / 3, "   Login  ", 20)
+    @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 123 / 3, "   Login  ")
     @btn.on(:click_button) { SceneManager.goto(Scene_Title) }
   end
 
