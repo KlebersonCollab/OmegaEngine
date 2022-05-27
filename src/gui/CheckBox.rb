@@ -20,8 +20,8 @@ class CheckBox < Gui
     @btn_bounds = Rectangle.create(@x, @y, @width, @height + @space_between)
     # Load Font Awesome and Unicode Chars
     @simbols = [0xf14a, 0xf0c8].pack("LL") # Necessary to convert the codepoints to a string
-    @font_solid = LoadFontEx("src/font/fa_font_solid.otf", @check_size, @simbols, 2)
-    @font_line = LoadFontEx("src/font/fa_font.otf", @check_size, @simbols, 2)
+    @font_solid = LoadFontEx("resources/fonts/fa_font_solid.otf", @check_size, @simbols, 2)
+    @font_line = LoadFontEx("resources/fonts/fa_font.otf", @check_size, @simbols, 2)
   end
 
   def draw
