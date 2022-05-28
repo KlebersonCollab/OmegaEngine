@@ -26,7 +26,12 @@ class Scene_Base
   #--------------------------------------------------------------------------
   def update
     @frames_counter += 1
+    draw
     SceneManager.exit if IsKeyPressed(KEY_ESCAPE)
+  end
+
+  def draw
+
   end
   #--------------------------------------------------------------------------
   # * Finalização do processo

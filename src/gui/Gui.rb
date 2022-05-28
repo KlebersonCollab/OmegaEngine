@@ -28,6 +28,7 @@ class Gui < Emitter
   def update
     @mouse_pos = GetMousePosition()
     @btn_action = false
+    draw
   end
 
   #------------------------------------------------------------------------------

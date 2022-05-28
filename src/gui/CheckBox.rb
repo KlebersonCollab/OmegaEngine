@@ -25,7 +25,7 @@ class CheckBox < Gui
   end
 
   def draw
-    super()
+    super
     draw_check
     DrawText(@text, @x + (@width / 2) - (@size_text / 2) + @space_between + @border_size, @btn_bounds[:y] + @space_between - @border_size, @check_size, @font_color)
   end
@@ -39,7 +39,6 @@ class CheckBox < Gui
 
   def update
     super
-    draw
     in_area(@btn_bounds)
   end
 

@@ -13,11 +13,11 @@ require_relative "src/gui/CheckBox"
 
 
 MAX_BATCH_ELEMENTS = 8192
-MAX_BUNNIES = 10000#50000
+MAX_BUNNIES = 8500#50000
 Bunny = Struct.new(:position, :speed, :color, keyword_init: true)
 
 class Game
-
+  #Main
   def initialize(screenWidth, screenHeight)
     @screenWidth = screenWidth
     @screenHeight = screenHeight
@@ -27,10 +27,11 @@ class Game
   end
   #Create Window
   def create_window
-    InitWindow(@screenWidth, @screenHeight, "Ruby-raylib bindings - bunnymark")
-    SetTargetFPS(60)
+    #SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_TRANSPARENT | FLAG_WINDOW_MAXIMIZED | FLAG_WINDOW_HIGHDPI)
+    InitWindow(@screenWidth, @screenHeight, "Omega Engine")
+    SetTargetFPS(64)
     InitAudioDevice()
-    SetWindowMonitor(1)
+    #SetWindowMonitor(1)
   end
   #Set bunnies
   def set_bunnies
@@ -77,7 +78,7 @@ class Game
     DrawText(TextFormat("bunnies: %i", :int, @bunnies.length), 120, 10, 20, GREEN)
     DrawText(TextFormat("batched draw calls: %i", :int, 1 + @bunnies.length/MAX_BATCH_ELEMENTS), 320, 10, 20, MAROON)
 
-    DrawText("Scene Actual:#{SceneManager.scene}",GetScreenWidth()/2, 10, 20, MAROON)
+    DrawText("Scene Actual:#{SceneManager.scene}",GetScreenWidth()/2-400, 10, 20, MAROON)
 
     DrawFPS(10, 10)
   end
@@ -89,7 +90,7 @@ class Game
       SceneManager.update
       BeginDrawing()
         ClearBackground(BLACK)
-        draw_bunnies
+        #draw_bunnies
         draw_info_benchmark
       EndDrawing()
     end

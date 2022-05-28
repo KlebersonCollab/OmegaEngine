@@ -8,7 +8,6 @@ class Scene_Title < Scene_Base
     load_music
     create_background
   end
-
   #--------------------------------------------------------------------------
   # * Load Background Texture
   #--------------------------------------------------------------------------
@@ -21,9 +20,8 @@ class Scene_Title < Scene_Base
     @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 32, "Loginho")
     @btn.on(:click_button) { SceneManager.call(Scene_Dois) }
     @btn.on(:mouse_on_event) { self }
-    @check = CheckBox.new(@center_x - 140, GetScreenHeight() - 160, "Lembrar?", check_size: 20, icon_color: DARKGRAY)
+    @check = CheckBox.new(@center_x - 140, GetScreenHeight() - 160, "Lembrar?", check_size: 20, icon_color: BLACK)
   end
-
   #--------------------------------------------------------------------------
   # * Load Scene Music
   #--------------------------------------------------------------------------
@@ -31,26 +29,29 @@ class Scene_Title < Scene_Base
     @music = OE.music("Fantasy Medieval Music - Song of the North")
     PlayMusicStream(@music)
   end
-
   #--------------------------------------------------------------------------
   # * Update Basic
   #--------------------------------------------------------------------------
   def update
     super
-    draw_background
-    draw_game_title
     UpdateMusicStream(@music)
     @btn.update
     @check.update
   end
-
+  #--------------------------------------------------------------------------
+  # * Draw
+  #--------------------------------------------------------------------------
+  def draw
+    super
+    draw_background
+    draw_game_title
+  end
   #--------------------------------------------------------------------------
   # * Draw Background
   #--------------------------------------------------------------------------
   def draw_background
     DrawTexturePro(@title_screen, @layout[0], @layout[1], Vector2.create(0, 0), 0.0, WHITE)
   end
-
   #--------------------------------------------------------------------------
   # * Draw Game Title
   #--------------------------------------------------------------------------
