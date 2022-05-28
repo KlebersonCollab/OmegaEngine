@@ -20,7 +20,7 @@ class Scene_Dois < Scene_Base
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
     @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 123 / 3, "Login")
-    @btn.on(:click_button) { SceneManager.goto(Scene_Title) }
+    @btn.on(:clicked) { SceneManager.goto(Scene_Title) }
   end
 
   #--------------------------------------------------------------------------

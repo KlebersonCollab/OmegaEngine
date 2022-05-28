@@ -3,7 +3,7 @@ class Button < Gui
   # * Initialize
   #--------------------------------------------------------------------------
   def initialize(x, y, width, height, text = "", font_size: 20, font_color: WHITE, space_between: 8)
-    super()
+    super
     @x = x
     @y = y
     @width = width
@@ -33,7 +33,7 @@ class Button < Gui
   #--------------------------------------------------------------------------
   def update
     super
-    in_area(@btn_bounds)
+    in_area?(@btn_bounds)
     @source_rect[:y] = @btn_state * @frame_height
   end
 

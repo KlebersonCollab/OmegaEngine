@@ -39,7 +39,7 @@ class CheckBox < Gui
 
   def update
     super
-    in_area(@btn_bounds)
+    in_area?(@btn_bounds)
   end
 
   def dispose

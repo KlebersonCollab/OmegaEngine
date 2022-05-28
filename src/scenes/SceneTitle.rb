@@ -17,8 +17,10 @@ class Scene_Title < Scene_Base
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
+    @txtbox = TextBox.new(@center_x - 140, @center_y + 150, 300, 50,"", max_input:20,font_size:20)
+
     @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 32, "Loginho")
-    @btn.on(:click_button) { SceneManager.call(Scene_Dois) }
+    @btn.on(:clicked) { SceneManager.call(Scene_Dois) }
     @btn.on(:mouse_on_event) { self }
     @check = CheckBox.new(@center_x - 140, GetScreenHeight() - 160, "Lembrar?", check_size: 20, icon_color: BLACK)
   end
@@ -37,6 +39,7 @@ class Scene_Title < Scene_Base
     UpdateMusicStream(@music)
     @btn.update
     @check.update
+    @txtbox.update
   end
   #--------------------------------------------------------------------------
   # * Draw
@@ -66,5 +69,6 @@ class Scene_Title < Scene_Base
     UnloadMusicStream(@music)
     @btn.dispose
     @check.dispose
+    @txtbox.dispose
   end
 end

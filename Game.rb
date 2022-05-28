@@ -10,6 +10,7 @@ require_relative "src/gui/Emitter"
 require_relative "src/gui/Gui"
 require_relative "src/gui/Button"
 require_relative "src/gui/CheckBox"
+require_relative "src/gui/TextBox"
 
 
 MAX_BATCH_ELEMENTS = 8192
