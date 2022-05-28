@@ -79,7 +79,7 @@ class Game
     DrawRectangle(0, 0, @screenWidth, 40, BLACK)
     DrawText(TextFormat("Bunnies: %i", :int, @bunnies.length), 120, 10, 20, GREEN)
     DrawText(TextFormat("Batched draw calls: %i", :int, 1 + @bunnies.length/MAX_BATCH_ELEMENTS), 320, 10, 20, MAROON)
-    DrawText("Scene: #{(SceneManager.scene).class.name}",GetScreenWidth()/2-400, 10, 20, MAROON)
+    DrawText("Scene: #{(SceneManager.scene).class.name}",GetScreenWidth()/2-200, 10, 20, MAROON)
     DrawFPS(10, 10)
   end
   #Game Loop
@@ -106,6 +106,6 @@ class Game
 
 end
 
-@Game = Game.new(800, 600)
+@Game = Game.new(1880, 920)
 @Game.update
 @Game.dispose
