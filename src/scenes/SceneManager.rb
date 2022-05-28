@@ -4,20 +4,20 @@ module SceneManager
   #--------------------------------------------------------------------------
   # * Start
   #--------------------------------------------------------------------------
-  def self.run(width,height,title,fps)
-    InitWindow(width,height,title)
-    InitAudioDevice()
-    SetTargetFPS(fps)
-    #ToggleFullscreen()
-    #SetWindowMonitor(1)
+  def self.run
     @scene = first_scene_class.new
-    @scene.main while @scene
   end
   #--------------------------------------------------------------------------
   # * Scene
   #--------------------------------------------------------------------------
   def self.scene
     @scene
+  end
+  #--------------------------------------------------------------------------
+  # * Scene
+  #--------------------------------------------------------------------------
+  def self.update
+    @scene.update unless @scene.nil?
   end
   #--------------------------------------------------------------------------
   # * First Scene
@@ -60,8 +60,7 @@ module SceneManager
   # * Exit Game
   #--------------------------------------------------------------------------
   def self.exit
+    @scene.dispose
     @scene = nil
-    CloseAudioDevice()
-    CloseWindow()
   end
 end

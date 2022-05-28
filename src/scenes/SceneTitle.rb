@@ -19,7 +19,7 @@ class Scene_Title < Scene_Base
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
     @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 32, "Loginho")
-    @btn.on(:click_button) { SceneManager.goto(Scene_Dois) }
+    @btn.on(:click_button) { SceneManager.call(Scene_Dois) }
     @btn.on(:mouse_on_event) { self }
     @check = CheckBox.new(@center_x - 140, GetScreenHeight() - 160, "Lembrar?", check_size: 20, icon_color: DARKGRAY)
   end
@@ -35,7 +35,7 @@ class Scene_Title < Scene_Base
   #--------------------------------------------------------------------------
   # * Update Basic
   #--------------------------------------------------------------------------
-  def update_basic
+  def update
     super
     draw_background
     draw_game_title
@@ -57,15 +57,6 @@ class Scene_Title < Scene_Base
   def draw_game_title
     DrawText(TextSubtext("Omega Engine", 0, @frames_counter / 15), @center_x - 260, 60, 80, RAYWHITE)
   end
-
-  #--------------------------------------------------------------------------
-  # * Execute terminate process
-  #--------------------------------------------------------------------------
-  def terminate
-    super
-    dispose
-  end
-
   #--------------------------------------------------------------------------
   # * Dispose All Resources and Sounds
   #--------------------------------------------------------------------------

@@ -21,6 +21,13 @@ module OE
     LoadTexture("resources/gui/#{filename}.png")
   end
   #--------------------------------------------------------------------------
+  # * Load Texture in resources/system/
+  #     filename : nome do arquivo
+  #--------------------------------------------------------------------------
+  def self.system(filename)
+    LoadTexture("resources/system/#{filename}.png")
+  end
+  #--------------------------------------------------------------------------
   # * Load Music in resources/audio/music
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
