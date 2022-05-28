@@ -14,7 +14,7 @@ require_relative "src/gui/TextBox"
 
 
 MAX_BATCH_ELEMENTS = 8192
-MAX_BUNNIES = 8500#50000
+MAX_BUNNIES = 9500#50000
 Bunny = Struct.new(:position, :speed, :color, keyword_init: true)
 
 class Game
@@ -24,6 +24,7 @@ class Game
     @screenHeight = screenHeight
     create_window
     set_bunnies
+    @draw_bunnies = false
     SceneManager.run
   end
   #Create Window
@@ -76,11 +77,9 @@ class Game
   #Draw info
   def draw_info_benchmark
     DrawRectangle(0, 0, @screenWidth, 40, BLACK)
-    DrawText(TextFormat("bunnies: %i", :int, @bunnies.length), 120, 10, 20, GREEN)
-    DrawText(TextFormat("batched draw calls: %i", :int, 1 + @bunnies.length/MAX_BATCH_ELEMENTS), 320, 10, 20, MAROON)
-
-    DrawText("Scene Actual:#{SceneManager.scene}",GetScreenWidth()/2-400, 10, 20, MAROON)
-
+    DrawText(TextFormat("Bunnies: %i", :int, @bunnies.length), 120, 10, 20, GREEN)
+    DrawText(TextFormat("Batched draw calls: %i", :int, 1 + @bunnies.length/MAX_BATCH_ELEMENTS), 320, 10, 20, MAROON)
+    DrawText("Scene: #{(SceneManager.scene).class.name}",GetScreenWidth()/2-400, 10, 20, MAROON)
     DrawFPS(10, 10)
   end
   #Game Loop
@@ -91,7 +90,7 @@ class Game
       SceneManager.update
       BeginDrawing()
         ClearBackground(BLACK)
-        #draw_bunnies
+        draw_bunnies if @draw_bunnies
         draw_info_benchmark
       EndDrawing()
     end
@@ -107,6 +106,6 @@ class Game
 
 end
 
-@Game = Game.new(1920, 1080)
+@Game = Game.new(800, 600)
 @Game.update
 @Game.dispose

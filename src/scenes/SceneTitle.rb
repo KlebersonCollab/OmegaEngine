@@ -17,8 +17,7 @@ class Scene_Title < Scene_Base
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
-    @txtbox = TextBox.new(@center_x - 140, @center_y + 150, 300, 50,"", max_input:20,font_size:20)
-
+    @txtbox = TextBox.new(@center_x - 140, @center_y + 150, 300, 30,"", max_input:20,font_size:20, pass:true)
     @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 32, "Loginho")
     @btn.on(:clicked) { SceneManager.call(Scene_Dois) }
     @btn.on(:mouse_on_event) { self }
@@ -40,6 +39,7 @@ class Scene_Title < Scene_Base
     @btn.update
     @check.update
     @txtbox.update
+    p "#{@txtbox.real_text}"
   end
   #--------------------------------------------------------------------------
   # * Draw
