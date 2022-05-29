@@ -4,6 +4,9 @@ class Scene_Base
   #--------------------------------------------------------------------------
   def initialize
     start
+    @socket = TCPSocket.new('127.0.0.1',5000)
+    @socket.send("Hello", 0)
+    @socket.close
   end
   #--------------------------------------------------------------------------
   # * Inicialização do processo
@@ -13,14 +16,6 @@ class Scene_Base
     @center_x = GetScreenWidth() / 2
     @center_y = GetScreenHeight() / 2
   end
-
-  #--------------------------------------------------------------------------
-  # * Definição de mudança de cenas
-  #--------------------------------------------------------------------------
-  def scene_changing?
-    SceneManager.scene != self
-  end
-
   #--------------------------------------------------------------------------
   # * Atualização da tela
   #--------------------------------------------------------------------------
@@ -31,12 +26,15 @@ class Scene_Base
   end
 
   def draw
-
+    #while message = @socket.gets
+      #puts message.chomp
+    #end
   end
   #--------------------------------------------------------------------------
   # * Finalização do processo
   #--------------------------------------------------------------------------
   def dispose
+    @socket.close
   end
   #--------------------------------------------------------------------------
   # * Chamada de retorno de cena

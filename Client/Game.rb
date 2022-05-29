@@ -1,3 +1,4 @@
+require 'socket'
 require_relative 'util/setup_dll'
 require_relative 'src/modules/OE'
 
@@ -24,7 +25,7 @@ class Game
     @screenHeight = screenHeight
     create_window
     set_bunnies
-    @draw_bunnies = false
+    $draw_bunnies = false
     SceneManager.run
   end
   #Create Window
@@ -33,7 +34,9 @@ class Game
     InitWindow(@screenWidth, @screenHeight, "Omega Engine")
     SetTargetFPS(64)
     InitAudioDevice()
+    SetMasterVolume(0.1)
     #SetWindowMonitor(1)
+   #ToggleFullscreen()
   end
   #Set bunnies
   def set_bunnies
@@ -90,7 +93,7 @@ class Game
       SceneManager.update
       BeginDrawing()
         ClearBackground(BLACK)
-        draw_bunnies if @draw_bunnies
+        draw_bunnies if $draw_bunnies
         draw_info_benchmark
       EndDrawing()
     end
@@ -106,6 +109,6 @@ class Game
 
 end
 
-@Game = Game.new(1880, 920)
+@Game = Game.new(1920, 1080)
 @Game.update
 @Game.dispose

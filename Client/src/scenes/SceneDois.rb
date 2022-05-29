@@ -13,7 +13,7 @@ class Scene_Dois < Scene_Base
   #--------------------------------------------------------------------------
   def create_background
     @texture = []
-    @title_screen = OE.title("1024083")
+    @title_screen = OE.title("asian-girl-fantasy-artwork-4k-j3-1920x1080")
     @texture << @title_screen
     @layout = [
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
@@ -30,16 +30,20 @@ class Scene_Dois < Scene_Base
     @music = OE.music("Fantasy Medieval Music - Song of the North")
     PlayMusicStream(@music)
   end
-
   #--------------------------------------------------------------------------
   # * Update Basic
   #--------------------------------------------------------------------------
   def update
     super
-    draw_background
-    draw_game_title
     UpdateMusicStream(@music)
     @btn.update
+  end
+  #--------------------------------------------------------------------------
+  # * Draw
+  #--------------------------------------------------------------------------
+  def draw
+    super
+    draw_background
   end
   #--------------------------------------------------------------------------
   # * Draw Background
@@ -47,13 +51,6 @@ class Scene_Dois < Scene_Base
   def draw_background
     DrawTexturePro(@title_screen, @layout[0], @layout[1], Vector2.create(0, 0), 0.0, WHITE)
   end
-
-  #--------------------------------------------------------------------------
-  # * Draw Game Title
-  #--------------------------------------------------------------------------
-  def draw_game_title
-  end
-
   #--------------------------------------------------------------------------
   # * Dispose All Resources and Sounds
   #--------------------------------------------------------------------------

@@ -17,11 +17,16 @@ class Scene_Title < Scene_Base
       Rectangle.create(0, 0, @title_screen[:width], @title_screen[:height]),
       Rectangle.create(0, 0, GetScreenWidth(), GetScreenHeight()),
     ]
-    @txtbox = TextBox.new(@center_x - 140, @center_y + 150, 300, 30,"", max_input:20,font_size:20, pass:true)
-    @btn = Button.new(@center_x - 140, GetScreenHeight() - 230, 141, 32, "Loginho")
+    @user = TextBox.new(@center_x - 240, @center_y + 100, 300, 30,"", max_input:20,font_size:20)
+    @pass = TextBox.new(@center_x - 240, @center_y + 150, 300, 30,"", max_input:20,font_size:20, pass:true)
+    @btn = Button.new(@center_x - 150, @center_y + 260, 141, 32, "Loginho")
     @btn.on(:clicked) { SceneManager.call(Scene_Dois) }
-    @btn.on(:mouse_on_event) { self }
-    @check = CheckBox.new(@center_x - 140, GetScreenHeight() - 160, "Lembrar?", check_size: 20, icon_color: BLACK)
+    @btn.on(:clicked) { p"#{@user.text} - #{@pass.real_text}"}
+    #@btn.on(:clicked) {SetMasterVolume(0.1)}
+    #@btn.on(:clicked) {TakeScreenshot("print/Screenshot.png")}
+    @check = CheckBox.new(@center_x - 240, @center_y + 200, "Lembrar?", check_size: 20, icon_color: BLACK)
+    @check.on(:checked) { $draw_bunnies=true}
+    @check.on(:unchecked) { $draw_bunnies=false}
   end
   #--------------------------------------------------------------------------
   # * Load Scene Music
@@ -38,8 +43,8 @@ class Scene_Title < Scene_Base
     UpdateMusicStream(@music)
     @btn.update
     @check.update
-    @txtbox.update
-    p "#{@txtbox.real_text}"
+    @pass.update
+    @user.update
   end
   #--------------------------------------------------------------------------
   # * Draw
@@ -69,6 +74,6 @@ class Scene_Title < Scene_Base
     UnloadMusicStream(@music)
     @btn.dispose
     @check.dispose
-    @txtbox.dispose
+    @pass.dispose
   end
 end

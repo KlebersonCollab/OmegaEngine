@@ -4,41 +4,41 @@ module OE
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.title(filename)
-    LoadTexture("resources/titles/#{filename}.png")
+    LoadTexture("Client/resources/titles/#{filename}.png")
   end
   #--------------------------------------------------------------------------
   # * Load Texture in resources/pictures
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.picture(filename)
-    LoadTexture("resources/pictures/#{filename}.png")
+    LoadTexture("Client/resources/pictures/#{filename}.png")
   end
   #--------------------------------------------------------------------------
   # * Load Texture in resources/gui
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.gui(filename)
-    LoadTexture("resources/gui/#{filename}.png")
+    LoadTexture("Client/resources/gui/#{filename}.png")
   end
   #--------------------------------------------------------------------------
   # * Load Texture in resources/system/
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.system(filename)
-    LoadTexture("resources/system/#{filename}.png")
+    LoadTexture("Client/resources/system/#{filename}.png")
   end
   #--------------------------------------------------------------------------
   # * Load Music in resources/audio/music
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.music(filename)
-    LoadMusicStream("resources/audio/music/#{filename}.ogg")
+    LoadMusicStream("Client/resources/audio/music/#{filename}.ogg")
   end
   #--------------------------------------------------------------------------
   # * Load Sound in resources/audio/sounds
   #     filename : nome do arquivo
   #--------------------------------------------------------------------------
   def self.sound(filename)
-    LoadSound("resources/audio/sounds/#{filename}.wav")
+    LoadSound("Client/resources/audio/sounds/#{filename}.wav")
   end
 end

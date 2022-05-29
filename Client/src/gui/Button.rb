@@ -16,7 +16,7 @@ class Button < Gui
     @button = OE.gui("Button")
     @frame_height = @button[:height]/3
     @btn_bounds = Rectangle.create(@x, @y, @width, @height)
-    @source_rect =  Rectangle.create(0, 0, @button[:width], @frame_height)
+    @source_rect =  Rectangle.create(0, 0, @width, @frame_height)#@button[:width], @frame_height)
   end
 
   #--------------------------------------------------------------------------

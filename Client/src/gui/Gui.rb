@@ -17,7 +17,6 @@ class Gui < Emitter
     @active = false
     @in_area = false
   end
-
   #------------------------------------------------------------------------------
   # * Draw Method
   #------------------------------------------------------------------------------
@@ -41,7 +40,7 @@ class Gui < Emitter
   # * Check Mouse Position in area GUI
   #------------------------------------------------------------------------------
   def in_area?(btn_bounds)
-    @in_area = CheckCollisionPointRec(@mouse_pos, @btn_bounds)
+    @in_area = CheckCollisionPointRec(@mouse_pos, btn_bounds)
     if @in_area
       @btn_state = 1
     else
