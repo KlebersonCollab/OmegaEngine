@@ -84,6 +84,7 @@ class Listener < Emitter
     unless io.nil?
       receive_message(io)
     end
+    sleep 0.6
   end
 
   #--------------------------------------------------------------------------
